@@ -64,8 +64,10 @@ namespace WiredUSBScanner
         public MainPage()
         {
             usbScan = USBQRscanFactory.CreateInstance();
-            OnScanListener myOnScanListener = new OnScanListener();
-            usbScan.Init(myOnScanListener);
+            usbScan.PowerOn();
+            
+
+
 
             InitializeComponent();
 
@@ -80,10 +82,13 @@ namespace WiredUSBScanner
         int count = 0;
         private void scanBtn_Clicked(object sender, EventArgs e)
         {
+           
+
             count++;
             //usbScan.Init(OnScanListener);
             Barcode.Text = "";
-            usbScan.PowerOn();
+            OnScanListener myOnScanListener = new OnScanListener();
+            usbScan.Init(myOnScanListener);
             openScanner(true);
             usbScan.Scan_start();
         }
